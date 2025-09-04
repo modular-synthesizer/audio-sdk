@@ -13,7 +13,7 @@ import { runGenerator } from "./runGenerator.js";
  * @param synthesizer The synthesizer in which the node is initialized, used to get the number of polyphony voices.
  * @param ctx The audio context in which the nodes are created.
  */
-export async function initAudioNodes(node: ModuleNode, generators: NodeGenerator[], synthesizer: Synthesizer, ctx: AudioContext) {
+export async function initAudioNodes(node: ModuleNode, generators: NodeGenerator[], synthesizer: Synthesizer, ctx: AudioContext): Promise<void> {
   try {
     const generator = findGenerator(generators, node)
     if (node.polyphonic) {

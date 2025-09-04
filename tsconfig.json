@@ -21,5 +21,6 @@
     "outDir": "dist",
     "rootDir": "src",
     "sourceMap": true,
-  }
+  },
+  "exclude": [ "spec", "vitest.config.ts" ]
 }

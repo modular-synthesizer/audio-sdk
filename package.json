@@ -22,8 +22,10 @@
     "webdriverio": "^9.19.2"
   },
   "dependencies": {
+    "@factory-js/factory": "^0.4.1",
     "@synple/audio": "link:",
     "@testing-library/dom": "^10.4.1",
+    "uuid": "^11.1.0",
     "vitest": "^3.2.4"
   }
 }

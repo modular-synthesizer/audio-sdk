@@ -3,10 +3,13 @@
   "type": "module",
   "version": "0.1.0",
   "description": "",
-  "files": [ "dist" ],
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf ./dist/* && tsc"
+    "build": "rm -rf ./dist/* && tsc",
+    "test:browser": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +17,9 @@
   "packageManager": "pnpm@10.4.1",
   "devDependencies": {
     "@types/node": "^24.3.0",
-    "typescript": "^5.9.2"
+    "@vitest/browser": "^3.2.4",
+    "typescript": "^5.9.2",
+    "webdriverio": "^9.19.2"
   },
   "pnpm": {
     "overrides": {
@@ -22,6 +27,8 @@
     }
   },
   "dependencies": {
-    "@synple/audio": "link:"
+    "@synple/audio": "link:",
+    "@testing-library/dom": "^10.4.1",
+    "vitest": "^3.2.4"
   }
 }

@@ -3,13 +3,20 @@ import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.typ
 import { runGenerator } from "../../../src/core/functions/runGenerator.js";
 
 describe("runGenerator", () => {
-  it("Correctly runs a generator", async () => {
+  describe("Nominal case", async () => {
     const generator: NodeGenerator = {
       name: 'testGenerator',
       id: 'testGeneratorId',
-      code: 'return new OscillatorNode(context, {frequency: 440})'
+      code: 'return new OscillatorNode(context, {frequency: 42})'
     }
-    expect(await runGenerator(generator, new AudioContext())).toBeInstanceOf(OscillatorNode)
+    const audioNode: AudioNode = await runGenerator(generator, new AudioContext())
+
+    it("Correctly runs a generator", async () => {
+      expect(audioNode).toBeInstanceOf(OscillatorNode)
+    })
+    it("Has set the correct value for the frequency", () => {
+      expect((audioNode as OscillatorNode).frequency.value).toEqual(42)
+    })
   })
   it("correctly fails when a generator properly throws an error", async () => {
     const generator: NodeGenerator = {

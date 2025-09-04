@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@synple/audio': 'link:'
-
 importers:
 
   .:
@@ -19,7 +16,7 @@ importers:
         version: 10.4.1
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4)
+        version: 3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4)(happy-dom@18.0.1)
     devDependencies:
       '@types/node':
         specifier: ^24.3.0
@@ -364,6 +361,9 @@ packages:
 
   '@types/sinonjs__fake-timers@8.1.5':
     resolution: {integrity: sha512-mQkU2jY8jJEF7YHjHvsQO8+3ughTL1mcnn96igfhONmR+fUPSKIkefQYpSe8bsly2Ep7oQbn/6VG5/9/0qcArQ==}
+
+  '@types/whatwg-mimetype@3.0.2':
+    resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
 
   '@types/which@2.0.2':
     resolution: {integrity: sha512-113D3mDkZDjo+EeUEHCFy0qniNc1ZpecGiAU7WSo7YDoSzolZIQKpYFHrPpjkB2nuyahcKfrmLXeQlh7gqJYdw==}
@@ -837,6 +837,10 @@ packages:
 
   grapheme-splitter@1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
+
+  happy-dom@18.0.1:
+    resolution: {integrity: sha512-qn+rKOW7KWpVTtgIUi6RVmTBZJSe2k0Db0vh1f7CWrWclkkc7/Q+FrOfkZIb2eiErLyqu5AXEzE7XthO9JVxRA==}
+    engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
@@ -1404,6 +1408,10 @@ packages:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
 
+  whatwg-mimetype@3.0.0:
+    resolution: {integrity: sha512-nt+N2dzIutVRxARx1nghPKGv1xHikU7HKdfafKkLNLindmPU/ch3U31NOCGGA/dmPcmb1VlofO0vnKAcsm0o/Q==}
+    engines: {node: '>=12'}
+
   whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
     engines: {node: '>=18'}
@@ -1688,6 +1696,9 @@ snapshots:
 
   '@types/sinonjs__fake-timers@8.1.5': {}
 
+  '@types/whatwg-mimetype@3.0.2':
+    optional: true
+
   '@types/which@2.0.2': {}
 
   '@types/ws@8.18.1':
@@ -1708,7 +1719,7 @@ snapshots:
       magic-string: 0.30.18
       sirv: 3.0.2
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4)
+      vitest: 3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4)(happy-dom@18.0.1)
       ws: 8.18.3
     optionalDependencies:
       webdriverio: 9.19.2
@@ -2228,6 +2239,13 @@ snapshots:
 
   grapheme-splitter@1.0.4: {}
 
+  happy-dom@18.0.1:
+    dependencies:
+      '@types/node': 20.19.12
+      '@types/whatwg-mimetype': 3.0.2
+      whatwg-mimetype: 3.0.0
+    optional: true
+
   has-flag@4.0.0: {}
 
   htmlfy@0.8.1: {}
@@ -2724,7 +2742,7 @@ snapshots:
       '@types/node': 24.3.0
       fsevents: 2.3.3
 
-  vitest@3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4):
+  vitest@3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4)(happy-dom@18.0.1):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -2752,6 +2770,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.3.0
       '@vitest/browser': 3.2.4(vite@7.1.4(@types/node@24.3.0))(vitest@3.2.4)(webdriverio@9.19.2)
+      happy-dom: 18.0.1
     transitivePeerDependencies:
       - jiti
       - less
@@ -2831,6 +2850,9 @@ snapshots:
   whatwg-encoding@3.1.1:
     dependencies:
       iconv-lite: 0.6.3
+
+  whatwg-mimetype@3.0.0:
+    optional: true
 
   whatwg-mimetype@4.0.0: {}
 

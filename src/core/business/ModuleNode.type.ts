@@ -1,4 +1,4 @@
-export type BaseNode = { id: string, name: string }
+export type BaseNode = { id: string, name: string, generator: string }
 
 export type PolyphonicNode = BaseNode & {
   polyphonic: true,

@@ -1,8 +1,17 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.type.js";
-import { runGenerator } from "../../../src/core/functions/runGenerator.js";
+import { runGeneratorTemplate } from "../../../src/core/functions/runGenerator.js";
 
 describe("runGenerator", () => {
+
+  const mocks = { start: vi.fn() }
+  const runGenerator = runGeneratorTemplate(mocks.start)
+
+  beforeEach(() => {
+    vi.resetAllMocks()
+    vi.clearAllMocks()
+  })
+
   describe("Nominal case", async () => {
     const generator: NodeGenerator = {
       name: 'testGenerator',
@@ -16,6 +25,11 @@ describe("runGenerator", () => {
     })
     it("Has set the correct value for the frequency", () => {
       expect((audioNode as OscillatorNode).frequency.value).toEqual(42)
+    })
+    it("Has correctly started the node as it is an oscillator", async () => {
+      const spy = vi.spyOn(mocks, 'start')
+      await runGeneratorTemplate(mocks.start)(generator, new AudioContext())
+      expect(spy).toHaveBeenCalledOnce()
     })
   })
   describe("alternative cases", () => {

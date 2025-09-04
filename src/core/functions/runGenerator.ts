@@ -12,14 +12,18 @@ const AsyncFunction = (async () => {}).constructor
  * 
  * @returns the instanciated audio node, or a gain node with gain at 1 if something has failed along the way.
  */
-export async function runGenerator(generator: NodeGenerator, ctx: AudioContext): Promise<AudioNode> {
-  let audioNode: AudioNode
-  try {
-    audioNode = await AsyncFunction("context", "payload", generator.code)(ctx, {}) as AudioNode
-    if (audioNode instanceof AudioScheduledSourceNode) audioNode.start()
+export function runGeneratorTemplate(start: (_:AudioScheduledSourceNode) => void) {
+  return async (generator: NodeGenerator, ctx: AudioContext): Promise<AudioNode> => {
+    let audioNode: AudioNode
+    try {
+      audioNode = await AsyncFunction("context", "payload", generator.code)(ctx, {}) as AudioNode
+      if (audioNode instanceof AudioScheduledSourceNode) start(audioNode)
+    }
+    catch(_) {
+      audioNode = new GainNode(ctx, { gain: 1 });
+    }
+    return audioNode
   }
-  catch(_) {
-    audioNode = new GainNode(ctx, { gain: 1 });
-  }
-  return audioNode
 }
+
+export const runGenerator = runGeneratorTemplate(n => n.start())

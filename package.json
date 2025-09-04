@@ -1,0 +1,27 @@
+{
+  "name": "@synple/audio",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "",
+  "files": [ "dist" ],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf ./dist/* && tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.4.1",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "@synple/audio": "link:"
+    }
+  },
+  "dependencies": {
+    "@synple/audio": "link:"
+  }
+}

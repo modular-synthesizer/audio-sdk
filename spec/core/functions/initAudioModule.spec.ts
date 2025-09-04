@@ -14,7 +14,7 @@ describe("initAudioModule", async () => {
   const generators: NodeGenerator[] = [
     { id: "genid", name: "generator", code: "return new BiquadFilterNode(context, { frequency: 300 })"}
   ]
-  const synthesizer = { voices: 4 }
+  const synthesizer = { voices: 4, modules: [] }
   const context = new AudioContext()
   await initAudioModule(module, generators, synthesizer, context)
 

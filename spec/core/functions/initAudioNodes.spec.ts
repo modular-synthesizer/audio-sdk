@@ -4,7 +4,7 @@ import type { MonophonicNode, PolyphonicNode } from "../../../src/core/business/
 import { initAudioNodes } from "../../../src/core/functions/initAudioNodes"
 
 describe("initAudioNodes", () => {
-  const synthesizer = { voices: 4 }
+  const synthesizer = { voices: 4, modules: [] }
   const generators: NodeGenerator[] = [
     { id: "id", name: "generator", code: "return new OscillatorNode(context, { frequency: 300 })"}
   ]

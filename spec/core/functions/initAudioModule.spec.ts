@@ -9,7 +9,8 @@ describe("initAudioModule", async () => {
   const monophonicNode: MonophonicNode = { id: "2", name: "second", polyphonic: false, generator: "generator" }
   const module: Module = {
     id: "test-id",
-    nodes: [ monophonicNode, polyphonicNode ]
+    nodes: [ monophonicNode, polyphonicNode ],
+    links: []
   }
   const generators: NodeGenerator[] = [
     { id: "genid", name: "generator", code: "return new BiquadFilterNode(context, { frequency: 300 })"}

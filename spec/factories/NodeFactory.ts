@@ -13,6 +13,6 @@ export const PolyphonicNodeFactory = createFactory<PolyphonicNode>({
 export const MonophonicNodeFactory = createFactory<MonophonicNode>({
   id: () => uuid(),
   polyphonic: () => false,
-  name: () => 'polynode',
+  name: () => 'mononode',
   generator: () => 'generator'
 })

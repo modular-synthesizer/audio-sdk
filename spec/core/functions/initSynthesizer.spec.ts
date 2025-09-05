@@ -19,8 +19,8 @@ describe("initSynthesizer", async () => {
 
   const synthesizer = await SynthesizerFactory({
     modules: [
-      { id: "1", nodes: [ nodes.error, nodes.mono ] },
-      { id: "2", nodes: [ nodes.unknown, nodes.poly ]}
+      { id: "1", nodes: [ nodes.error, nodes.mono ], links: [] },
+      { id: "2", nodes: [ nodes.unknown, nodes.poly ], links: [] }
     ]
   })
 

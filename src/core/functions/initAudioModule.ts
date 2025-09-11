@@ -6,5 +6,5 @@ import { initAudioNodes } from "./initAudioNodes.js";
 
 export async function initAudioModule(module: Module, generators: NodeGenerator[], synthesizer: Synthesizer, context: AudioContext): Promise<void> {
   await Promise.all(module.nodes.map(async n => await initAudioNodes(n, generators, synthesizer, context)))
-  await Promise.all(module.links.map(async l => await connectNodes(module, l)))
+  await Promise.all(module.links.map(async l => await connectNodes(l, module)))
 }

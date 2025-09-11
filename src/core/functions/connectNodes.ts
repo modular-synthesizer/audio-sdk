@@ -5,7 +5,7 @@ import { findNode } from "./findNode.js";
 type ConnectFunction = (from: AudioNode, to: AudioNode, findex: number, tindex: number) => void
 
 export function connectNodesTemplate(connect: ConnectFunction) {
-  return (module: Module, link: ModuleLink) => {
+  return (link: ModuleLink, module: Module) => {
     try {
       const from = findNode(module, link.from.node)
       const to = findNode(module, link.to.node)

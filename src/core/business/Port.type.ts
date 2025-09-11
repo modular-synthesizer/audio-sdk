@@ -6,6 +6,7 @@ export type PortKind = 'input' | 'output'
 export type Port = {
   id: string
   name: string
+  index: number
   kind: PortKind
   // Specifies the target of the port so that cables can easily be (un)plugged
   target: ModuleNode

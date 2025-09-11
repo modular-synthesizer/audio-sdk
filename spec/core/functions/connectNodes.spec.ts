@@ -45,7 +45,6 @@ describe("connectNodes", async () => {
   const spy = vi.spyOn(mocks, 'connect')
   const connectNodes = connectNodesTemplate(mocks.connect)
 
-
   beforeAll(async () => {
     await initAudioNodes(nodes.sources.mono, generators, synthesizer, context)
     await initAudioNodes(nodes.analysers.mono, generators, synthesizer, context)
@@ -60,13 +59,13 @@ describe("connectNodes", async () => {
 
   describe("Mono to Mono", () => {
     it("Correctly connects two monophonic nodes", async () => {
-      connectNodes(links[0],module)
+      connectNodes(nodes.sources.mono, nodes.analysers.mono, 0, 1)
       expect(spy).toHaveBeenCalledExactlyOnceWith(nodes.sources.mono.audioNode, nodes.analysers.mono.audioNode, 0, 1)
     })
   })
 
   describe("Mono to Poly", () => {
-    beforeEach(() => connectNodes(links[1], module))
+    beforeEach(() => connectNodes(nodes.sources.mono, nodes.analysers.poly, 2, 3))
 
     it("Correctly connects a monophonic node the first polyphonic node", async () => {
       expect(spy).toHaveBeenNthCalledWith(1, nodes.sources.mono.audioNode, nodes.analysers.poly.audioNodes[0], 2, 3)
@@ -77,7 +76,7 @@ describe("connectNodes", async () => {
   })
 
   describe("Poly to Mono", () => {
-    beforeEach(() => connectNodes(links[2], module))
+    beforeEach(() => connectNodes(nodes.sources.poly, nodes.analysers.mono, 4, 5))
 
     it("Correctly connects a monophonic node the first polyphonic node", async () => {
       expect(spy).toHaveBeenNthCalledWith(1, nodes.sources.poly.audioNodes[0], nodes.analysers.mono.audioNode, 4, 5)
@@ -88,7 +87,7 @@ describe("connectNodes", async () => {
   })
 
   describe("Poly to Poly", () => {
-    beforeEach(() => connectNodes(links[3], module))
+    beforeEach(() => connectNodes(nodes.sources.poly, nodes.analysers.poly, 6, 7))
 
     it("Correctly connects a monophonic node the first polyphonic node", async () => {
       expect(spy).toHaveBeenNthCalledWith(1, nodes.sources.poly.audioNodes[0], nodes.analysers.poly.audioNodes[0], 6, 7)

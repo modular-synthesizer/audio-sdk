@@ -1,6 +1,6 @@
 import type { Module } from "../business/Module.type.js";
 import type { NodeGenerator } from "../business/NodeGenerator.type.js";
-import type { Synthesizer } from "../business/Synthesizer.js";
+import type { Synthesizer } from "../business/Synthesizer.type.js";
 import { connectNodes } from "./connectNodes.js";
 import { initAudioNodes } from "./initAudioNodes.js";
 

@@ -1,6 +1,6 @@
 import type { ModuleNode } from "../business/ModuleNode.type.js";
 import type { NodeGenerator } from "../business/NodeGenerator.type.js";
-import type { Synthesizer } from "../business/Synthesizer.js";
+import type { Synthesizer } from "../business/Synthesizer.type.js";
 import { findGenerator } from "./findGenerator.js";
 import { runGenerator } from "./runGenerator.js";
 

@@ -3,6 +3,7 @@ import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.typ
 import { initSynthesizer } from "../../../src/core/functions/initSynthesizer";
 import { SynthesizerFactory } from "../../factories/SynthesizerFactory";
 import { MonophonicNodeFactory, PolyphonicNodeFactory } from "../../factories/NodeFactory";
+import type { Synthesizer } from "../../../src/core/business/Synthesizer.type";
 
 describe("initSynthesizer", async () => {
   const generators: NodeGenerator[] = [
@@ -17,7 +18,7 @@ describe("initSynthesizer", async () => {
     error: await MonophonicNodeFactory({ generator: 'error' })
   }
 
-  const synthesizer = await SynthesizerFactory({
+  const synthesizer: Synthesizer = await SynthesizerFactory({
     modules: [
       { id: "1", nodes: [ nodes.error, nodes.mono ], links: [] },
       { id: "2", nodes: [ nodes.unknown, nodes.poly ], links: [] }

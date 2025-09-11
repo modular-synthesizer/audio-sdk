@@ -8,7 +8,13 @@ export function runGeneratorTemplate(start: (_:AudioScheduledSourceNode) => void
     let audioNode: AudioNode
     try {
       audioNode = await AsyncFunction("context", "payload", generator.code)(ctx, {}) as AudioNode
-      if (audioNode instanceof AudioScheduledSourceNode) start(audioNode)
+      if (audioNode instanceof AudioScheduledSourceNode) {
+        console.log("Starting a source", audioNode)
+        start(audioNode)
+      }
+      else {
+        console.log("Not starting", audioNode)
+      }
     }
     catch(_) {
       audioNode = new GainNode(ctx, { gain: 1 });

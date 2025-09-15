@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { runGeneratorTemplate } from "../../../src/core/functions/runGenerator.js";
-import { NodeGenerator } from "@synple/core";
+import type { NodeGenerator } from "@synple/core";
 
 describe("runGenerator", () => {
 

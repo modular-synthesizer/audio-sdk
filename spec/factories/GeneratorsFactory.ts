@@ -1,4 +1,4 @@
-import { NodeGenerator } from "@synple/core";
+import type { NodeGenerator } from "@synple/core";
 import { createFactory } from "../utils/factories";
 
 export const ConstantSource = createFactory<NodeGenerator>({

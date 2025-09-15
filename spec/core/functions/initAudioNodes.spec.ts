@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { initAudioNodes } from "../../../src/core/functions/initAudioNodes"
-import { MonophonicNode, NodeGenerator, PolyphonicNode } from "@synple/core";
+import type { MonophonicNode, NodeGenerator, PolyphonicNode } from "@synple/core";
 
 describe("initAudioNodes", () => {
   const synthesizer = { voices: 4, modules: {}, id: "synth-id", name: "synth name", cables: [], ports: {} }

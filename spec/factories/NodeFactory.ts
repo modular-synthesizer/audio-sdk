@@ -1,4 +1,4 @@
-import { MonophonicNode, PolyphonicNode } from "@synple/core";
+import type { MonophonicNode, PolyphonicNode } from "@synple/core";
 import { createFactory } from "../utils/factories";
 import { v7 as uuid } from 'uuid'
 

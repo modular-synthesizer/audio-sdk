@@ -22,5 +22,5 @@
     "rootDir": "src",
     "sourceMap": true,
   },
-  "exclude": [ "spec", "vitest.config.ts" ]
+  "include": [ "src" ]
 }

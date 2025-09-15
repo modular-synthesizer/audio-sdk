@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.type.js";
 import { runGeneratorTemplate } from "../../../src/core/functions/runGenerator.js";
+import { NodeGenerator } from "@synple/core";
 
 describe("runGenerator", () => {
 
@@ -80,7 +80,7 @@ describe("runGenerator", () => {
         })
       })
       describe("With a constant source node", () => {
-        
+
         const generator: NodeGenerator = {
           name: 'testGenerator',
           id: 'testGeneratorId',

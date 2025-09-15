@@ -1,6 +1,4 @@
-import type { ModuleNode } from "../business/ModuleNode.type.js";
-import type { NodeGenerator } from "../business/NodeGenerator.type.js";
-import type { Synthesizer } from "../business/Synthesizer.type.js";
+import type { ModuleNode, NodeGenerator, Synthesizer } from "@synple/core";
 import { findGenerator } from "./findGenerator.js";
 import { runGenerator } from "./runGenerator.js";
 
@@ -24,6 +22,6 @@ export async function initAudioNodes(node: ModuleNode, generators: NodeGenerator
       node.audioNode = await runGenerator(generator, ctx)
     }
   }
-  catch(_) { }
+  catch (_) { }
   finally { }
 }

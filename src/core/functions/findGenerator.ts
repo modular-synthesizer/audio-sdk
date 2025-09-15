@@ -1,7 +1,6 @@
-import type { ModuleNode } from "../business/ModuleNode.type.js";
-import type { NodeGenerator } from "../business/NodeGenerator.type.js";
+import type { ModuleNode, NodeGenerator } from "@synple/core"
 
-export class GeneratorNotFound extends Error {}
+export class GeneratorNotFound extends Error { }
 
 export function findGenerator(generators: NodeGenerator[], node: ModuleNode): NodeGenerator {
   const found: NodeGenerator | undefined = generators.find(g => g.name === node.generator)

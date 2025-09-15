@@ -1,4 +1,4 @@
-import type { Synthesizer } from "../../src/core/business/Synthesizer.type";
+import { Synthesizer } from "@synple/core";
 import { createFactory } from "../utils/factories";
 
 export const SynthesizerFactory = createFactory<Synthesizer>({

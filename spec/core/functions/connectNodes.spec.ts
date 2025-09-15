@@ -1,15 +1,13 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.type";
 import { Analyser, ConstantSource } from "../../factories/GeneratorsFactory";
 import { MonophonicNodeFactory, PolyphonicNodeFactory } from "../../factories/NodeFactory";
 import { initAudioNodes } from "../../../src/core/functions/initAudioNodes";
-import type { ModuleLink } from "../../../src/core/business/ModuleLink.type"
-import type { Module } from "../../../src/core/business/Module.type";
-import type { Synthesizer } from "../../../src/core/business/Synthesizer.type";
 import { connectNodesTemplate } from '../../../src/core/functions/connectNodes'
+import { Module, ModuleLink, NodeGenerator, Synthesizer } from "@synple/core";
+import { listFactory } from "../../factories/lists";
 
 describe("connectNodes", async () => {
-  const generators: NodeGenerator[] = await Promise.all([ Analyser(), ConstantSource() ])
+  const generators: NodeGenerator[] = await Promise.all([Analyser(), ConstantSource()])
   const nodes = {
     analysers: {
       mono: await MonophonicNodeFactory({ generator: "analyser", name: 'manalyser' }),
@@ -20,22 +18,24 @@ describe("connectNodes", async () => {
       poly: await PolyphonicNodeFactory({ generator: "source", name: 'psource' })
     }
   }
-  const links: ModuleLink[] = [
-    { id: '1', from: { node: 'msource', index: 0 }, to: { node: 'manalyser', index: 1 } },
-    { id: '2', from: { node: 'msource', index: 2 }, to: { node: 'panalyser', index: 3 } },
-    { id: '3', from: { node: 'psource', index: 4 }, to: { node: 'manalyser', index: 5 } },
-    { id: '3', from: { node: 'psource', index: 6 }, to: { node: 'panalyser', index: 7 } },
-  ]
+  const links = listFactory([
+    { id: '1', from: { node: nodes.sources.mono, index: 0 }, to: { node: nodes.analysers.mono, index: 1 } },
+    { id: '2', from: { node: nodes.sources.mono, index: 2 }, to: { node: nodes.analysers.poly, index: 3 } },
+    { id: '3', from: { node: nodes.sources.poly, index: 4 }, to: { node: nodes.analysers.mono, index: 5 } },
+    { id: '3', from: { node: nodes.sources.poly, index: 6 }, to: { node: nodes.analysers.poly, index: 7 } },
+  ])
   const module: Module = {
     id: 'moduleId',
-    nodes: [ nodes.sources.mono, nodes.sources.poly, nodes.analysers.mono, nodes.analysers.poly ],
+    nodes: listFactory([nodes.sources.mono, nodes.sources.poly, nodes.analysers.mono, nodes.analysers.poly]),
     links
   }
   const synthesizer: Synthesizer = {
     voices: 2,
-    modules: [ module ],
+    modules: listFactory([module]),
     cables: [],
-    ports: {}
+    ports: {},
+    id: "synth-id",
+    name: "synth name"
   }
   const context = new AudioContext()
 

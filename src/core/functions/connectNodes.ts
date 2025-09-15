@@ -1,4 +1,4 @@
-import type { ModuleNode } from "../business/ModuleNode.type.js";
+import type { ModuleNode } from "@synple/core"
 
 type ConnectFunction = (from: AudioNode, to: AudioNode, findex: number, tindex: number) => void
 
@@ -11,19 +11,19 @@ export function connectNodesTemplate(connect: ConnectFunction) {
       if (from.polyphonic && !to.polyphonic && to.audioNode) {
         for (const n of from.audioNodes) connect(n, to.audioNode, fromIndex, toIndex)
       }
-      if(!from.polyphonic && to.polyphonic && from.audioNode) {
+      if (!from.polyphonic && to.polyphonic && from.audioNode) {
         for (const n of to.audioNodes) {
           connect(from.audioNode, n, fromIndex, toIndex)
         }
       }
-      if(from.polyphonic && to.polyphonic) {
+      if (from.polyphonic && to.polyphonic) {
         const voices = Math.min(from.audioNodes.length, to.audioNodes.length)
         for (let i = 0; i < voices; ++i) {
           connect(from.audioNodes[i] as AudioNode, to.audioNodes[i] as AudioNode, fromIndex, toIndex)
         }
       }
     }
-    catch(exception) {
+    catch (exception) {
       console.error(exception)
     }
   }

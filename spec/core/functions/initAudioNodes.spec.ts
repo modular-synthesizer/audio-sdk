@@ -1,12 +1,11 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.type";
-import type { MonophonicNode, PolyphonicNode } from "../../../src/core/business/ModuleNode.type";
 import { initAudioNodes } from "../../../src/core/functions/initAudioNodes"
+import { MonophonicNode, NodeGenerator, PolyphonicNode } from "@synple/core";
 
 describe("initAudioNodes", () => {
-  const synthesizer = { voices: 4, modules: [] }
+  const synthesizer = { voices: 4, modules: {}, id: "synth-id", name: "synth name", cables: [], ports: {} }
   const generators: NodeGenerator[] = [
-    { id: "id", name: "generator", code: "return new OscillatorNode(context, { frequency: 300 })"}
+    { id: "id", name: "generator", code: "return new OscillatorNode(context, { frequency: 300 })" }
   ]
   const polyphonicNode: PolyphonicNode = { id: "node", name: "gain", generator: "generator", polyphonic: true, audioNodes: [] }
   const monophonicNode: MonophonicNode = { id: "node", name: "gain", generator: "generator", polyphonic: false }
@@ -44,14 +43,14 @@ describe("initAudioNodes", () => {
   })
   describe("Exception cases", () => {
     describe("Polyphonic node - when the generator is not found", () => {
-    const node: PolyphonicNode = { ...polyphonicNode, audioNodes: [] }
+      const node: PolyphonicNode = { ...polyphonicNode, audioNodes: [] }
       it("Has not instanciated any node", async () => {
         await initAudioNodes(node, [], synthesizer, context)
         expect(node.audioNodes.length).toBe(0)
       })
     })
     describe("Monophonic node - when a generator is not found", () => {
-      const node: MonophonicNode = { ... monophonicNode, audioNode: undefined }
+      const node: MonophonicNode = { ...monophonicNode, audioNode: undefined }
       it("Has not instanciated the node", async () => {
         await initAudioNodes(node, [], synthesizer, context)
         expect(node.audioNode).toBeUndefined()

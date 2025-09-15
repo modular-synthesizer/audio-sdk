@@ -1,14 +1,13 @@
 import { describe, expect, it } from "vitest"
-import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.type";
 import { initSynthesizer } from "../../../src/core/functions/initSynthesizer";
 import { SynthesizerFactory } from "../../factories/SynthesizerFactory";
 import { MonophonicNodeFactory, PolyphonicNodeFactory } from "../../factories/NodeFactory";
-import type { Synthesizer } from "../../../src/core/business/Synthesizer.type";
+import { NodeGenerator, Synthesizer } from "@synple/core";
 
 describe("initSynthesizer", async () => {
   const generators: NodeGenerator[] = [
-    { id: "id1", name: "generator", code: "return new OscillatorNode(context, { frequency: 300 })"},
-    { id: "id2", name: "error", code: "anything crashing the app"}
+    { id: "id1", name: "generator", code: "return new OscillatorNode(context, { frequency: 300 })" },
+    { id: "id2", name: "error", code: "anything crashing the app" }
   ]
 
   const nodes = {
@@ -19,10 +18,24 @@ describe("initSynthesizer", async () => {
   }
 
   const synthesizer: Synthesizer = await SynthesizerFactory({
-    modules: [
-      { id: "1", nodes: [ nodes.error, nodes.mono ], links: [] },
-      { id: "2", nodes: [ nodes.unknown, nodes.poly ], links: [] }
-    ]
+    modules: {
+      "1": {
+        id: "1",
+        nodes: {
+          [nodes.error.id]: nodes.error,
+          [nodes.mono.id]: nodes.mono
+        },
+        links: {}
+      },
+      "2": {
+        id: "2",
+        nodes: {
+          [nodes.unknown.id]: nodes.unknown,
+          [nodes.poly.id]: nodes.poly
+        },
+        links: {}
+      },
+    }
   })
 
   const context = new AudioContext()

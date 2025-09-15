@@ -1,9 +1,9 @@
-import type { NodeGenerator } from "../business/NodeGenerator.type.ts";
+import type { NodeGenerator } from "@synple/core"
 
 // Constructor of an asynchronous function used to instanciate the code with an await
-const AsyncFunction = (async () => {}).constructor
+const AsyncFunction = (async () => { }).constructor
 
-export function runGeneratorTemplate(start: (_:AudioScheduledSourceNode) => void) {
+export function runGeneratorTemplate(start: (_: AudioScheduledSourceNode) => void) {
   return async (generator: NodeGenerator, ctx: AudioContext): Promise<AudioNode> => {
     let audioNode: AudioNode
     try {
@@ -16,7 +16,7 @@ export function runGeneratorTemplate(start: (_:AudioScheduledSourceNode) => void
         console.log("Not starting", audioNode)
       }
     }
-    catch(_) {
+    catch (_) {
       audioNode = new GainNode(ctx, { gain: 1 });
     }
     return audioNode

@@ -1,21 +1,22 @@
 import { describe, expect, it } from "vitest";
-import type { Module } from "../../../src/core/business/Module.type";
 import { initAudioModule } from "../../../src/core/functions/initAudioModule"
-import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.type";
-import type { MonophonicNode, PolyphonicNode } from "../../../src/core/business/ModuleNode.type";
+import type { Module, MonophonicNode, NodeGenerator, PolyphonicNode } from "@synple/core";
 
 describe("initAudioModule", async () => {
   const polyphonicNode: PolyphonicNode = { id: "1", name: "first", polyphonic: true, audioNodes: [], generator: "generator" }
   const monophonicNode: MonophonicNode = { id: "2", name: "second", polyphonic: false, generator: "generator" }
   const module: Module = {
     id: "test-id",
-    nodes: [ monophonicNode, polyphonicNode ],
-    links: []
+    nodes: {
+      [monophonicNode.id]: monophonicNode,
+      [polyphonicNode.id]: polyphonicNode
+    },
+    links: {}
   }
   const generators: NodeGenerator[] = [
-    { id: "genid", name: "generator", code: "return new BiquadFilterNode(context, { frequency: 300 })"}
+    { id: "genid", name: "generator", code: "return new BiquadFilterNode(context, { frequency: 300 })" }
   ]
-  const synthesizer = { voices: 4, modules: [] }
+  const synthesizer = { voices: 4, modules: {}, id: "synth-id", name: "synth name", cables: [], ports: {} }
   const context = new AudioContext()
   await initAudioModule(module, generators, synthesizer, context)
 

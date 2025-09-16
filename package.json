@@ -1,8 +1,9 @@
 {
-  "name": "@synple/audio",
+  "name": "@jsynple/audio",
   "type": "module",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "",
+  "private": false,
   "files": [
     "dist"
   ],
@@ -23,7 +24,7 @@
   },
   "dependencies": {
     "@factory-js/factory": "^0.4.1",
-    "@synple/audio": "link:",
+    "@jsynple/core": "^1.0.0",
     "@testing-library/dom": "^10.4.1",
     "uuid": "^11.1.0",
     "vitest": "^3.2.4"

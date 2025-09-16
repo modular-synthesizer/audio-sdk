@@ -1,15 +1,13 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import type { NodeGenerator } from "../../../src/core/business/NodeGenerator.type";
 import { Analyser, ConstantSource } from "../../factories/GeneratorsFactory";
 import { MonophonicNodeFactory, PolyphonicNodeFactory } from "../../factories/NodeFactory";
 import { initAudioNodes } from "../../../src/core/functions/initAudioNodes";
-import type { ModuleLink } from "../../../src/core/business/ModuleLink.type"
-import type { Module } from "../../../src/core/business/Module.type";
-import type { Synthesizer } from "../../../src/core/business/Synthesizer";
-import { connectNodesTemplate } from "../../../src/core/functions/connectNodes"
+import { connectNodesTemplate } from '../../../src/core/functions/connectNodes'
+import type { Module, NodeGenerator, Synthesizer } from "@synple/core";
+import { listFactory } from "../../factories/lists";
 
 describe("connectNodes", async () => {
-  const generators: NodeGenerator[] = await Promise.all([ Analyser(), ConstantSource() ])
+  const generators: NodeGenerator[] = await Promise.all([Analyser(), ConstantSource()])
   const nodes = {
     analysers: {
       mono: await MonophonicNodeFactory({ generator: "analyser", name: 'manalyser' }),
@@ -20,20 +18,24 @@ describe("connectNodes", async () => {
       poly: await PolyphonicNodeFactory({ generator: "source", name: 'psource' })
     }
   }
-  const links: ModuleLink[] = [
-    { id: '1', from: { node: 'msource', index: 0 }, to: { node: 'manalyser', index: 1 } },
-    { id: '2', from: { node: 'msource', index: 2 }, to: { node: 'panalyser', index: 3 } },
-    { id: '3', from: { node: 'psource', index: 4 }, to: { node: 'manalyser', index: 5 } },
-    { id: '3', from: { node: 'psource', index: 6 }, to: { node: 'panalyser', index: 7 } },
-  ]
+  const links = listFactory([
+    { id: '1', from: { node: nodes.sources.mono, index: 0 }, to: { node: nodes.analysers.mono, index: 1 } },
+    { id: '2', from: { node: nodes.sources.mono, index: 2 }, to: { node: nodes.analysers.poly, index: 3 } },
+    { id: '3', from: { node: nodes.sources.poly, index: 4 }, to: { node: nodes.analysers.mono, index: 5 } },
+    { id: '3', from: { node: nodes.sources.poly, index: 6 }, to: { node: nodes.analysers.poly, index: 7 } },
+  ])
   const module: Module = {
     id: 'moduleId',
-    nodes: [ nodes.sources.mono, nodes.sources.poly, nodes.analysers.mono, nodes.analysers.poly ],
+    nodes: listFactory([nodes.sources.mono, nodes.sources.poly, nodes.analysers.mono, nodes.analysers.poly]),
     links
   }
   const synthesizer: Synthesizer = {
     voices: 2,
-    modules: [ module ]
+    modules: listFactory([module]),
+    cables: [],
+    ports: {},
+    id: "synth-id",
+    name: "synth name"
   }
   const context = new AudioContext()
 
@@ -42,7 +44,6 @@ describe("connectNodes", async () => {
   }
   const spy = vi.spyOn(mocks, 'connect')
   const connectNodes = connectNodesTemplate(mocks.connect)
-
 
   beforeAll(async () => {
     await initAudioNodes(nodes.sources.mono, generators, synthesizer, context)
@@ -58,13 +59,13 @@ describe("connectNodes", async () => {
 
   describe("Mono to Mono", () => {
     it("Correctly connects two monophonic nodes", async () => {
-      connectNodes(module, links[0])
+      connectNodes(nodes.sources.mono, nodes.analysers.mono, 0, 1)
       expect(spy).toHaveBeenCalledExactlyOnceWith(nodes.sources.mono.audioNode, nodes.analysers.mono.audioNode, 0, 1)
     })
   })
 
   describe("Mono to Poly", () => {
-    beforeEach(() => connectNodes(module, links[1]))
+    beforeEach(() => connectNodes(nodes.sources.mono, nodes.analysers.poly, 2, 3))
 
     it("Correctly connects a monophonic node the first polyphonic node", async () => {
       expect(spy).toHaveBeenNthCalledWith(1, nodes.sources.mono.audioNode, nodes.analysers.poly.audioNodes[0], 2, 3)
@@ -75,7 +76,7 @@ describe("connectNodes", async () => {
   })
 
   describe("Poly to Mono", () => {
-    beforeEach(() => connectNodes(module, links[2]))
+    beforeEach(() => connectNodes(nodes.sources.poly, nodes.analysers.mono, 4, 5))
 
     it("Correctly connects a monophonic node the first polyphonic node", async () => {
       expect(spy).toHaveBeenNthCalledWith(1, nodes.sources.poly.audioNodes[0], nodes.analysers.mono.audioNode, 4, 5)
@@ -86,7 +87,7 @@ describe("connectNodes", async () => {
   })
 
   describe("Poly to Poly", () => {
-    beforeEach(() => connectNodes(module, links[3]))
+    beforeEach(() => connectNodes(nodes.sources.poly, nodes.analysers.poly, 6, 7))
 
     it("Correctly connects a monophonic node the first polyphonic node", async () => {
       expect(spy).toHaveBeenNthCalledWith(1, nodes.sources.poly.audioNodes[0], nodes.analysers.poly.audioNodes[0], 6, 7)

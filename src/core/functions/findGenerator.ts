@@ -1,4 +1,4 @@
-import type { ModuleNode, NodeGenerator } from "@synple/core"
+import type { ModuleNode, NodeGenerator } from "@jsynple/core"
 
 export class GeneratorNotFound extends Error { }
 

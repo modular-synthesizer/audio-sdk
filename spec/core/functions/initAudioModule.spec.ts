@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { initAudioModule } from "../../../src/core/functions/initAudioModule"
-import type { Module, MonophonicNode, NodeGenerator, PolyphonicNode } from "@synple/core";
+import type { Module, MonophonicNode, NodeGenerator, PolyphonicNode } from "@jsynple/core";
 
 describe("initAudioModule", async () => {
   const polyphonicNode: PolyphonicNode = { id: "1", name: "first", polyphonic: true, audioNodes: [], generator: "generator" }

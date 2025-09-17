@@ -1,4 +1,4 @@
-import type { ModuleNode } from "@synple/core"
+import type { ModuleNode } from "@jsynple/core"
 
 type ConnectFunction = (from: AudioNode, to: AudioNode, findex: number, tindex: number) => void
 

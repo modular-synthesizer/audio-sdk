@@ -1,4 +1,4 @@
-import type { ModuleLink } from "@synple/core";
+import type { ModuleLink } from "@jsynple/core";
 import { connectNodes } from "./connectNodes.js";
 
 export async function initLink(link: ModuleLink) {

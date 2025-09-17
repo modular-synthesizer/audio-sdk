@@ -1,4 +1,4 @@
-import type { Cable } from "@synple/core";
+import type { Cable } from "@jsynple/core";
 import { connectNodes } from "./connectNodes.js";
 
 export async function connectCable(cable: Cable) {

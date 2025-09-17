@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 import { initSynthesizer } from "../../../src/core/functions/initSynthesizer";
 import { SynthesizerFactory } from "../../factories/SynthesizerFactory";
 import { MonophonicNodeFactory, PolyphonicNodeFactory } from "../../factories/NodeFactory";
-import type { NodeGenerator, Synthesizer } from "@synple/core";
+import type { NodeGenerator, Synthesizer } from "@jsynple/core";
 
 describe("initSynthesizer", async () => {
   const generators: NodeGenerator[] = [

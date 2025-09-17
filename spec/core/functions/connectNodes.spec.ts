@@ -3,7 +3,7 @@ import { Analyser, ConstantSource } from "../../factories/GeneratorsFactory";
 import { MonophonicNodeFactory, PolyphonicNodeFactory } from "../../factories/NodeFactory";
 import { initAudioNodes } from "../../../src/core/functions/initAudioNodes";
 import { connectNodesTemplate } from '../../../src/core/functions/connectNodes'
-import type { Module, NodeGenerator, Synthesizer } from "@synple/core";
+import type { Module, NodeGenerator, Synthesizer } from "@jsynple/core";
 import { listFactory } from "../../factories/lists";
 
 describe("connectNodes", async () => {

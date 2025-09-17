@@ -1,4 +1,4 @@
-import type { NodeGenerator } from "@synple/core"
+import type { NodeGenerator } from "@jsynple/core"
 
 // Constructor of an asynchronous function used to instanciate the code with an await
 const AsyncFunction = (async () => { }).constructor

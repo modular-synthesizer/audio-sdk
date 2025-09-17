@@ -1,4 +1,4 @@
-import type { NodeGenerator, Synthesizer } from "@synple/core";
+import type { NodeGenerator, Synthesizer } from "@jsynple/core";
 import { connectCable } from "./connectCable.js";
 import { initAudioModule } from "./initAudioModule.js";
 

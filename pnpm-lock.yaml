@@ -12,8 +12,8 @@ importers:
         specifier: ^0.4.1
         version: 0.4.1
       '@jsynple/core':
-        specifier: ^1.0.0
-        version: 1.0.0(@types/node@24.3.0)(@vitest/browser@3.2.4)(happy-dom@18.0.1)
+        specifier: ^1.6.0
+        version: 1.6.0
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1
@@ -218,8 +218,8 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
-  '@jsynple/core@1.0.0':
-    resolution: {integrity: sha512-1KrfVrlhqcNHK2A7Hvif/1c5/kccFIx4ks8KQK5YxZ33ZUWv6rirlnaR3abXgJMoqlBK0uP7sG6Z33Qt7lvGAA==}
+  '@jsynple/core@1.6.0':
+    resolution: {integrity: sha512-C1aRVYcSBc34n9hxAgWfUOK1PH/R4I2lsCcY5DPcrLH+RtyLWlYlL5ZrjisVG8LNvb6XRYhEEamEq6XTvcG5dQ==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -368,6 +368,9 @@ packages:
 
   '@types/node@20.19.12':
     resolution: {integrity: sha512-lSOjyS6vdO2G2g2CWrETTV3Jz2zlCXHpu1rcubLKpz9oj+z/1CceHlj+yq53W+9zgb98nSov/wjEKYDNauD+Hw==}
+
+  '@types/node@20.19.16':
+    resolution: {integrity: sha512-VS6TTONVdgwJwtJr7U+ghEjpfmQdqehLLpg/iMYGOd1+ilaFjdBJwFuPggJ4EAYPDCzWfDUHoIxyVnu+tOWVuQ==}
 
   '@types/node@24.3.0':
     resolution: {integrity: sha512-aPTXCrfwnDLj4VvXrm+UUCQjNEvJgNA8s5F1cvwQU+3KNltTOkBm1j30uNLyqqPNe7gE3KFzImYoZEfLhp4Yow==}
@@ -1593,33 +1596,7 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
 
-  '@jsynple/core@1.0.0(@types/node@24.3.0)(@vitest/browser@3.2.4)(happy-dom@18.0.1)':
-    dependencies:
-      '@factory-js/factory': 0.4.1
-      '@synple/audio': 'link:'
-      '@testing-library/dom': 10.4.1
-      uuid: 11.1.0
-      vitest: 3.2.4(@types/node@24.3.0)(@vitest/browser@3.2.4)(happy-dom@18.0.1)
-    transitivePeerDependencies:
-      - '@edge-runtime/vm'
-      - '@types/debug'
-      - '@types/node'
-      - '@vitest/browser'
-      - '@vitest/ui'
-      - happy-dom
-      - jiti
-      - jsdom
-      - less
-      - lightningcss
-      - msw
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - tsx
-      - yaml
+  '@jsynple/core@1.6.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -1736,6 +1713,11 @@ snapshots:
   '@types/node@20.19.12':
     dependencies:
       undici-types: 6.21.0
+
+  '@types/node@20.19.16':
+    dependencies:
+      undici-types: 6.21.0
+    optional: true
 
   '@types/node@24.3.0':
     dependencies:
@@ -2288,7 +2270,7 @@ snapshots:
 
   happy-dom@18.0.1:
     dependencies:
-      '@types/node': 20.19.12
+      '@types/node': 20.19.16
       '@types/whatwg-mimetype': 3.0.2
       whatwg-mimetype: 3.0.0
     optional: true

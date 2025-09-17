@@ -1,4 +1,4 @@
-import type { ModuleNode, NodeGenerator, Synthesizer } from "@synple/core";
+import type { ModuleNode, NodeGenerator, Synthesizer } from "@jsynple/core";
 import { findGenerator } from "./findGenerator.js";
 import { runGenerator } from "./runGenerator.js";
 

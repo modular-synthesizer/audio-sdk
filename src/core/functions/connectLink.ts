@@ -1,8 +1,13 @@
-import type { ModuleNode } from "@jsynple/core"
+import type { ModuleLink, ModuleNode } from "@jsynple/core"
 
 type ConnectFunction = (from: AudioNode, to: AudioNode, findex: number, tindex: number) => void
 
-export function connectNodesTemplate(connect: ConnectFunction) {
+function getDestination(node: ModuleNode, audioNode: AudioNode, via: ModuleLink): AudioNode | AudioParam {
+  // @ts-ignore
+  return via.toParameter ? audioNode[via.parameter] : audioNode
+}
+
+export function connectLinkTemplate(connect: ConnectFunction) {
   return (from: ModuleNode, to: ModuleNode, fromIndex: number, toIndex: number) => {
     try {
       if (!from.polyphonic && !to.polyphonic && from.audioNode && to.audioNode) {
@@ -29,8 +34,9 @@ export function connectNodesTemplate(connect: ConnectFunction) {
   }
 }
 
-export const connectNodes = connectNodesTemplate(connectAudio)
+export const connectLink = connectLinkTemplate(connectAudio)
 
-function connectAudio(from: AudioNode, to: AudioNode, findex: number, tindex: number) {
+function connectAudio(from: AudioNode, to: AudioNode | AudioParam, findex: number, tindex: number) {
+  // @ts-ignore
   from?.connect(to, findex, tindex)
 }

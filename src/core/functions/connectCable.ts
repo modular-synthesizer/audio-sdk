@@ -1,6 +1,6 @@
 import type { Cable } from "@jsynple/core";
-import { connectNodes } from "./connectNodes.js";
+import { connectLink } from "./connectLink.js";
 
 export async function connectCable(cable: Cable) {
-  await connectNodes(cable.from.target, cable.to.target, cable.from.index, cable.to.index)
+  await connectLink(cable.from.target, cable.to.target, cable.from.index, cable.to.index)
 }

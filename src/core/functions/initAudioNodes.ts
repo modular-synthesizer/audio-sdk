@@ -12,6 +12,7 @@ import { runGenerator } from "./runGenerator.js";
  * @param ctx The audio context in which the nodes are created.
  */
 export async function initAudioNodes(node: ModuleNode, generators: NodeGenerator[], synthesizer: Synthesizer, ctx: AudioContext): Promise<void> {
+  console.debug(`        [NODE] Initializing node ${node.name} (generator: ${node.generator}, polyphonic: ${node.polyphonic})`)
   try {
     const generator = findGenerator(generators, node)
     if (node.polyphonic) {

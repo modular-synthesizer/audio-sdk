@@ -3,7 +3,7 @@ import { initAudioNodes } from "../../../src/core/functions/initAudioNodes"
 import type { MonophonicNode, NodeGenerator, PolyphonicNode } from "@jsynple/core";
 
 describe("initAudioNodes", () => {
-  const synthesizer = { voices: 4, modules: {}, id: "synth-id", name: "synth name", cables: [], ports: {} }
+  const synthesizer = { voices: 4, modules: {}, id: "synth-id", name: "synth name", cables: [], ports: {}, parameters: {}, x: 0, y: 0, scale: 1.0 }
   const generators: NodeGenerator[] = [
     { id: "id", name: "generator", code: "return new OscillatorNode(context, { frequency: 300 })" }
   ]

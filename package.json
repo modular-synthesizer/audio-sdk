@@ -1,7 +1,7 @@
 {
   "name": "@jsynple/audio",
   "type": "module",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "",
   "private": false,
   "files": [
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@factory-js/factory": "^0.4.1",
-    "@jsynple/core": "^1.7.1",
+    "@jsynple/core": "^1.8.1",
     "@testing-library/dom": "^10.4.1",
     "uuid": "^11.1.0",
     "vitest": "^3.2.4"

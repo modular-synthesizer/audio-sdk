@@ -11,12 +11,14 @@ describe("initAudioModule", async () => {
       [monophonicNode.id]: monophonicNode,
       [polyphonicNode.id]: polyphonicNode
     },
-    links: {}
+    links: {},
+    parameters: {},
+    ports: {}
   }
   const generators: NodeGenerator[] = [
     { id: "genid", name: "generator", code: "return new BiquadFilterNode(context, { frequency: 300 })" }
   ]
-  const synthesizer = { voices: 4, modules: {}, id: "synth-id", name: "synth name", cables: [], ports: {} }
+  const synthesizer = { voices: 4, modules: {}, id: "synth-id", name: "synth name", cables: [], ports: {}, x: 0, y: 0, scale: 1.0 }
   const context = new AudioContext()
   await initAudioModule(module, generators, synthesizer, context)
 

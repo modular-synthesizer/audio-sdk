@@ -1,4 +1,5 @@
-import type { Module, Parameter } from "@jsynple/core";
+import type { Parameter } from "@jsynple/core";
+import { getParameter } from "./getParameter.js"
 
 type ValueSetter = (param: AudioParam, value: number, context: AudioContext) => void
 
@@ -9,7 +10,7 @@ export function initParameterTemplate(setValue: ValueSetter) {
       console.debug(`            Applying value ${parameter.value} to node ${t.name} on parameter ${parameter.field}`)
       for (const node of nodes) {
         // @ts-ignore
-        setValue(node[parameter.field] as AudioParam, parameter.value, context)
+        setValue(getParameter(node, parameter.field), parameter.value, context)
       }
     }
   }

@@ -12,6 +12,6 @@ export async function initAudioModule(module: Module, generators: NodeGenerator[
   await Promise.all(nodes.map(async n => await initAudioNodes(n, generators, synthesizer, context)))
   console.debug("    [MODULE] Initializing links")
   await Promise.all(links.map(async l => await initLink(l)))
-  console.debug("    [MODULE] Initializing parameters")
-  await Promise.all(params.map(async p => initParameter(p, module, context)))
+  console.debug("    [MODULE] Initializing parameterz")
+  await Promise.all(params.map(async p => initParameter(p, context)))
 }

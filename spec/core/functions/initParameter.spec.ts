@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { initParameterTemplate, setValue } from "../../../src/core/functions/initParameter"
-import type { Module, ModuleNode, NodeGenerator, Parameter, Synthesizer } from "@jsynple/core";
+import { initParameterTemplate } from "../../../src/core/functions/initParameter"
+import type { Module, NodeGenerator, Parameter, Synthesizer } from "@jsynple/core";
 import { MonophonicNodeFactory, PolyphonicNodeFactory } from "../../factories/NodeFactory";
 import { initAudioNodes } from "../../../src/core/functions/initAudioNodes";
 
@@ -57,7 +57,7 @@ describe("initParameter", async () => {
 
   describe("Applied on a monophonic node", () => {
     beforeEach(() => {
-      initParameter({...parameter, targets: [nodes.mono]}, module, context)
+      initParameter({...parameter, targets: [nodes.mono]}, context)
     })
     it("Has called the setter only once", () => {
       // @ts-ignore
@@ -67,7 +67,7 @@ describe("initParameter", async () => {
 
   describe("Applied on a polyphonic node", () => {
     beforeEach(() => {
-      initParameter({...parameter, targets: [nodes.poly]}, module, context)
+      initParameter({...parameter, targets: [nodes.poly]}, context)
     })
     it("Has called the setter twice with the correct arguments", () => {
       // @ts-ignore

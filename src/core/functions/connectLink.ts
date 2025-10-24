@@ -1,12 +1,10 @@
 import type { ModuleLink, ModuleNode } from "@jsynple/core"
+import { getParameter } from "./getParameter.js"
 
 type ConnectFunction = (from: AudioNode, to: AudioNode | AudioParam, findex: number, tindex?: number) => void
 
 function getDestination(audioNode: AudioNode, via?: ModuleLink): AudioNode | AudioParam {
-  if (via?.toParameter) {
-    return audioNode[via.parameter as keyof AudioNode] as unknown as AudioParam
-  }
-  return audioNode
+  return via?.toParameter ? getParameter(audioNode, via.parameter) : audioNode
 }
 
 export function connectLinkTemplate(connect: ConnectFunction) {

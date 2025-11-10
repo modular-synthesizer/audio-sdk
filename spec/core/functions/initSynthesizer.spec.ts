@@ -25,7 +25,9 @@ describe("initSynthesizer", async () => {
           [nodes.error.id]: nodes.error,
           [nodes.mono.id]: nodes.mono
         },
-        links: {}
+        links: {},
+        ports: {},
+        parameters: {},
       },
       "2": {
         id: "2",
@@ -33,7 +35,9 @@ describe("initSynthesizer", async () => {
           [nodes.unknown.id]: nodes.unknown,
           [nodes.poly.id]: nodes.poly
         },
-        links: {}
+        links: {},
+        ports: {},
+        parameters: {},
       },
     }
   })

@@ -7,5 +7,7 @@ export const SynthesizerFactory = createFactory<Synthesizer>({
   name: () => "test name",
   modules: () => ({}),
   cables: () => [],
-  ports: () => ({})
+  x: () => 0,
+  y: () => 0,
+  scale: () => 1.0
 })

@@ -20,6 +20,9 @@ describe("initSynthesizer", async () => {
   const synthesizer: Synthesizer = await SynthesizerFactory({
     modules: {
       "1": {
+        rack: 0,
+        slot: 0,
+        slots: 2,
         id: "1",
         nodes: {
           [nodes.error.id]: nodes.error,
@@ -28,8 +31,12 @@ describe("initSynthesizer", async () => {
         links: {},
         ports: {},
         parameters: {},
+        controls: [],
       },
       "2": {
+        rack: 0,
+        slot: 0,
+        slots: 2,
         id: "2",
         nodes: {
           [nodes.unknown.id]: nodes.unknown,
@@ -38,6 +45,7 @@ describe("initSynthesizer", async () => {
         links: {},
         ports: {},
         parameters: {},
+        controls: [],
       },
     }
   })

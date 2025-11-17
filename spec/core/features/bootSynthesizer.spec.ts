@@ -21,7 +21,7 @@ describe("Given a user logged into the application", () => {
       mocks.getAllGenerators,
       mocks.initSynthesizer
     )
-    const synthesizer = await bootSynthesizer("synthesizer-id", "auth_token", fakes.context)
+    const synthesizer = await bootSynthesizer("synthesizer-id", "auth_token")
     test("then I get a synthesizer with the correct informations", () => {
       expect(synthesizer).toMatchObject({
         id: "test-id"

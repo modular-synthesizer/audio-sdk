@@ -88,7 +88,6 @@ describe("runGenerator", () => {
         }
 
         it("Has started the node correctly", async () => {
-          console.log("AVANT LE TEST")
           await runGenerator(generator, new AudioContext())
           expect(spy).toHaveBeenCalledOnce()
         })

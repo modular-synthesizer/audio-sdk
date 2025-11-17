@@ -1,21 +1,26 @@
-import { type Synthesizer, fetchSynthesizer, getAllGenerators } from "@jsynple/core";
+import { fetchSynthesizer, getAllGenerators } from "@jsynple/core";
 import { initSynthesizer } from "../functions/initSynthesizer.js";
 import { Eventual } from "@jsynple/core/dist/types/utils/Async.js";
+import { BootedSynthesizer } from "../../types/BootedSynthesizer.type.js";
 
-type SynthesizerBooter = (id: string, auth_token: string, context: AudioContext) => Eventual<Synthesizer>
+type SynthesizerBooter = (id: string, auth_token: string) => Eventual<BootedSynthesizer>
 
 export const bootSynthesizerTemplate = (
   fetchSynthesizerFct: typeof fetchSynthesizer,
   getAllGeneratorsFct: typeof getAllGenerators,
   init: typeof initSynthesizer
 ): SynthesizerBooter => {
-  return async (id, auth_token, context) => {
+  return async (id, auth_token) => {
+    const context = new AudioContext();
     const [synthesizer, gens] = await Promise.all([
       await fetchSynthesizerFct(id, auth_token),
       getAllGeneratorsFct(auth_token)
     ])
-    if (synthesizer) await init(synthesizer, gens.ok ? gens.data : [], context)
-    return synthesizer
+    if (synthesizer !== undefined) {
+      await init(synthesizer, gens.ok ? gens.data : [], context)
+      return { ...synthesizer, context }
+    }
+    return undefined
   }
 }
 

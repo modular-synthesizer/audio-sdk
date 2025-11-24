@@ -1,17 +1,21 @@
 import { fetchSynthesizer, getAllGenerators } from "@jsynple/core";
 import { initSynthesizer } from "../functions/initSynthesizer.js";
-import { Eventual } from "@jsynple/core/dist/types/utils/Async.js";
-import { BootedSynthesizer } from "../../types/BootedSynthesizer.type.js";
+import type { SynthesizerBooter } from "../../types/SynthesizerBooter.type.js";
 
-type SynthesizerBooter = (id: string, auth_token: string) => Eventual<BootedSynthesizer>
+function audioContextCreator(processorsUrl: string): AudioContext {
+  const context = new AudioContext()
+  context.audioWorklet.addModule(processorsUrl)
+  return context;
+}
 
 export const bootSynthesizerTemplate = (
   fetchSynthesizerFct: typeof fetchSynthesizer,
   getAllGeneratorsFct: typeof getAllGenerators,
+  initContextFct: typeof audioContextCreator,
   init: typeof initSynthesizer
 ): SynthesizerBooter => {
-  return async (id, auth_token) => {
-    const context = new AudioContext();
+  return async (id, processorsUrl, auth_token) => {
+    const context = initContextFct(processorsUrl)
     const [synthesizer, gens] = await Promise.all([
       await fetchSynthesizerFct(id, auth_token),
       getAllGeneratorsFct(auth_token)
@@ -41,5 +45,6 @@ export const bootSynthesizerTemplate = (
 export const bootSynthesizer = bootSynthesizerTemplate(
   fetchSynthesizer,
   getAllGenerators,
+  audioContextCreator,
   initSynthesizer
 )

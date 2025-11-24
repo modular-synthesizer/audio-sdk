@@ -13,15 +13,17 @@ describe("Given a user logged into the application", () => {
     const mocks = {
       getSynthesizer: vi.fn().mockReturnValue(fakes.synthesizer),
       getAllGenerators: vi.fn().mockReturnValue({ ok: true, data: fakes.generators }),
-      initSynthesizer: vi.fn()
+      initSynthesizer: vi.fn(),
+      createContext: vi.fn().mockReturnValue(fakes.context)
     }
     const spy = vi.spyOn(mocks, "initSynthesizer")
     const bootSynthesizer = bootSynthesizerTemplate(
       mocks.getSynthesizer,
       mocks.getAllGenerators,
+      mocks.createContext,
       mocks.initSynthesizer
     )
-    const synthesizer = await bootSynthesizer("synthesizer-id", "auth_token")
+    const synthesizer = await bootSynthesizer("synthesizer-id", "processorsUri", "auth_token")
     test("then I get a synthesizer with the correct informations", () => {
       expect(synthesizer).toMatchObject({
         id: "test-id"
@@ -29,6 +31,9 @@ describe("Given a user logged into the application", () => {
     })
     test("and the synthesizer audio nodes are correctly initialized", () => {
       expect(spy).toHaveBeenCalledExactlyOnceWith(fakes.synthesizer, fakes.generators, fakes.context)
+    })
+    test("and the processors have been correctly added to the context", () => {
+
     })
   })
 })

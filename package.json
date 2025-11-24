@@ -1,7 +1,7 @@
 {
   "name": "@jsynple/audio",
   "type": "module",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "",
   "private": false,
   "files": [
@@ -20,7 +20,7 @@
   "packageManager": "pnpm@10.18.0",
   "devDependencies": {
     "@types/node": "^24.3.0",
-    "@vitest/browser": "^3.2.4",
+    "@vitest/browser": "^4.0.13",
     "typescript": "^5.9.2",
     "webdriverio": "^9.19.2"
   },
@@ -28,7 +28,7 @@
     "@factory-js/factory": "^0.4.1",
     "@jsynple/core": "2.6.1",
     "@testing-library/dom": "^10.4.1",
-    "uuid": "^11.1.0",
+    "uuid": "^13.0.0",
     "vitest": "^3.2.4"
   }
 }

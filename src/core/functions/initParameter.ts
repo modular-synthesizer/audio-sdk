@@ -17,7 +17,7 @@ export function initParameterTemplate(setValue: ValueSetter) {
 }
 
 export const setValue: ValueSetter = (p, v, ctx) => {
-  p.setValueAtTime(v, ctx.currentTime)
+  if (p !== undefined) p.setValueAtTime(v, ctx.currentTime)
 }
 
 export const initParameter = initParameterTemplate(setValue)

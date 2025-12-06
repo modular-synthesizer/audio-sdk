@@ -12,8 +12,8 @@ importers:
         specifier: ^0.4.1
         version: 0.4.1
       '@jsynple/core':
-        specifier: 2.8.2
-        version: 2.8.2
+        specifier: 2.9.0
+        version: 2.9.0
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1
@@ -221,8 +221,8 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
-  '@jsynple/core@2.8.2':
-    resolution: {integrity: sha512-kw+jJXKG3UlHNibYlt/KqLrKdRGYUJ72cvnQ56psVrl8IlOLt+ykOnqsuMPxL3jH1+C9fIpNYh3TY2mEV6hxEg==}
+  '@jsynple/core@2.9.0':
+    resolution: {integrity: sha512-zMbXO+p2iiDaFx6P3BQbfGy4wlUWqYC5NE/grLAHXyOdgYqsIg8Ts/IcLwVbW39qAqTBimO1xWvwjWJqa55TOA==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -1576,7 +1576,7 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
 
-  '@jsynple/core@2.8.2': {}
+  '@jsynple/core@2.9.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
